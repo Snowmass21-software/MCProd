@@ -27,7 +27,12 @@
 #decay w+ > all all
 #decay w- > all all
 #decay z > all all
-define f = b b~  ta+ ta-
+
+define lept = l+ l- vl vl~
+define bos = Z W+ W- a
+define top = t t~
+
+define f = b b~ lept
 define opt_f = f _
 decay h > f f 
 #decay h > z z           , z  > all all

@@ -27,9 +27,10 @@
 #decay w+ > all all
 #decay w- > all all
 #decay z > all all
-define f = b b~  ta+ ta-
-define opt_f = f _
-decay h > f f opt_f opt_f
+define bar = lept u c d s u~ c~ d~ s~ b b~
+define foo = bar g a
+define opt_bar = bar _
+decay h > foo foo opt_bar opt_bar
 #decay h > z z           , z  > all all
 #decay h > w+ w-         , w+ > all all , w- > all all
 #decay h > ta+ ta-

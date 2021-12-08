@@ -1,11 +1,3 @@
-from sys import argv
-E=int(argv[1])
-process=argv[2]
-sample="%iTeV_%s"%(E,process)
-if len(argv)>3: test=bool(int(argv[3]))
-
-import os
-
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
 define j = g u c d s u~ c~ d~ s~ b b~
 define l+ = e+ mu+ ta+
@@ -120,12 +112,25 @@ xqcut={
 }
 
 import os
-import subprocess
-f=open(sample+'.mg','w')
 if __name__=='__main__':
+    # Parse arguments
+    from sys import argv,exit
+
+    if len(argv)<3:
+        print('usage: {} E process [test]'.format(argv[0]))
+        sys.exit(1)
+
+    E=int(argv[1])
+    process=argv[2]
+    if len(argv)>3: test=bool(int(argv[3]))
+
+    # Currnt working directory for absolute path for resources
+    prodBase=os.path.dirname(os.path.realpath(__file__))
+
+    # Generate MG command
+    f=open('makeGridPacks.mg','w')
     f.write(definitions+'\n')
-    f.write('set lhapdf_py2 %s/bin/lhapdf-config\n'%os.environ['prodBase'])
-    
+
     command=processes[process]
     n=len(command[0].split('%')[0].split())
 
@@ -145,9 +150,9 @@ if __name__=='__main__':
     f.write('reweight=ON\n')
     #f.write('madspin=ON\n')  #causes crash
     f.write('done\n')
-    #f.write(os.environ['prodBase']+'/Cards/param_card.dat\n')
-    f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
-    f.write('%s/Cards/pythia8_card.dat\n'%os.environ['prodBase'])
+    #f.write('%s/Cards/param_card.dat\n'%prodBase)
+    f.write('%s/Cards/run_card.dat\n'%prodBase)
+    f.write('%s/Cards/pythia8_card.dat\n'%prodBase)
     if process in ['t','tB','vbf']:
         f.write('set auto_ptj_mjj False\n')
     f.write('set gridpack = .true.\n')

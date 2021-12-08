@@ -13,4 +13,7 @@ jobs:
           fetch-depth: 0
       -
         name: Generate GridPacks
-        run: testGridpacks.sh
+        run: |
+          ls
+          cd MCProd
+          testGridpacks.sh

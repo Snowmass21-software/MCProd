@@ -17,9 +17,9 @@ jobs:
       -
         name: Generate GridPacks
         run: |
-          python makeGridPacks.py ${energy} B 1
+          python makeGridPacks.py ${{ matrix.energy }} B 1
           /opt/MG5aMC/3.3.1/bin/mg5_aMC < makeGridPacks.mg
-          tar -xzvf ${energy}TeV_B/run_01_gridpack.tar.gz
+          tar -xzvf ${{ matrix.energy }}TeV_B/run_01_gridpack.tar.gz
           cd madevent
           ./bin/compile
           ./bin/clean4grid

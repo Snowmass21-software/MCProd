@@ -4,7 +4,7 @@ jobs:
   sim:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/kkrizka/MCProd:pr-4
+      image: ghcr.io/kkrizka/mcprod:pr-4
     steps:
       -
         name: Checkout        

@@ -5,6 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/kkrizka/mcprod:pr-4
+    strategy:
+      matrix:
+        energy: [13, 100]
     steps:
       -
         name: Checkout        
@@ -14,9 +17,9 @@ jobs:
       -
         name: Generate GridPacks
         run: |
-          ./makeGridPacks.py 13 B 1
+          python makeGridPacks.py ${energy} B 1
           /opt/MG5aMC/3.3.1/bin/mg5_aMC < run/makeGridPacks.mg
-          tar -xzvf 13TeV_B/run_01_gridpack.tar.gz
+          tar -xzvf ${energy}TeV_B/run_01_gridpack.tar.gz
           cd madevent
           ./bin/compile
           ./bin/clean4grid

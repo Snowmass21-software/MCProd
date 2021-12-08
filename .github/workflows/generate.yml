@@ -4,14 +4,14 @@ jobs:
   gen:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/kkrizka/mcprod:pr-4
+      image: ghcr.io/kkrizka/mcprod:pr-7
     strategy:
       matrix:
         energy: [13, 100]
-        process: [B, BB, BBB, tt, t, tB, ttB, LL, LLB, vbf] #, H]
+        process: [B, BB, BBB, tt, t, tB, ttB, LL, LLB, vbf, H]
     steps:
       -
-        name: Checkout        
+        name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0

@@ -1,7 +1,7 @@
 name: Event Generation and Simulation
 on: push
 jobs:
-  sim:
+  gen:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/kkrizka/mcprod:pr-4

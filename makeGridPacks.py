@@ -1,8 +1,3 @@
-from sys import argv
-E=int(argv[1])
-process=argv[2]
-if len(argv)>3: test=bool(int(argv[3]))
-
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
 define j = g u c d s u~ c~ d~ s~ b b~
 define l+ = e+ mu+ ta+
@@ -104,8 +99,24 @@ processes={
 
 import os
 import subprocess
-f=file('makeGridPacks.mg','w')
+
 if __name__=='__main__':
+    # Parse arguments
+    from sys import argv,exit
+
+    if len(argv)<3:
+        print('usage: {} E process [test]'.format(argv[0]))
+        sys.exit(1)
+
+    E=int(argv[1])
+    process=argv[2]
+    if len(argv)>3: test=bool(int(argv[3]))
+
+    # Currnt working directory for absolute path for resources
+    prodBase=os.path.dirname(os.path.realpath(__file__))
+
+    # Generate MG command
+    f=open('makeGridPacks.mg','w')
     f.write(definitions+'\n')
     command=processes[process]
     n=len(command[0].split('%')[0].split())
@@ -124,7 +135,7 @@ if __name__=='__main__':
     f.write('reweight=ON\n')
     #f.write('madspin=ON\n')  #causes crash
     f.write('done\n')
-    f.write(os.environ['prodBase']+'/Cards/param_card.dat\n')  
+    f.write(f'{prodBase}/Cards/param_card.dat\n')
     f.write('set gridpack = .true.\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))

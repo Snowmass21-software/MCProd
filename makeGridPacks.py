@@ -125,7 +125,7 @@ if __name__=='__main__':
     if len(argv)>3: test=bool(int(argv[3]))
 
     # Currnt working directory for absolute path for resources
-    prodBase=os.path.dirname(os.path.realpath(__file__))
+    prodBase=os.environ.get('prodBase', os.path.dirname(os.path.realpath(__file__)))
 
     # Generate MG command
     f=open('makeGridPacks.mg','w')

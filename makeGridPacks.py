@@ -129,7 +129,9 @@ if __name__=='__main__':
     command=processes[process]
     n=len(command[0].split('%')[0].split())
 
-    if process=='H': f.write('import model heft\n')
+    if process=='H':
+        f.write('set auto_convert_model T\n'
+        f.write('import model heft\n')
     for i in range(len(command)):
         for j in range(5-n):
             if i==0 and j==0: 

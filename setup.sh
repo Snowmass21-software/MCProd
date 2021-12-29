@@ -19,7 +19,8 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     module load py-numpy/1.15.2-py3.7
     module load py-six/1.11.0-py3.7
     
-    source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
+    #source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
+    source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc8-opt/ROOT-env.sh
     
     #module load cmake
     
@@ -39,10 +40,11 @@ else
     fi
 fi
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib #:${prodBase}/MG5_aMC_v3_3_1/HEPTools/lhapdf6_py3/lib                             
-export PATH=$PATH:${prodBase}/bin:/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib:$prodBase/delphes #:${prodBase}/MG5_aMC_v3_3_1/HEPTools/lhapdf6_py3/lib
+export PATH=$PATH:${prodBase}/bin:$prodBase/delphes:/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux
 export PYTHONPATH=$PYTHONPATH:$PWD/lib/python3.8/site-packages
 #export lhapdf=$prodBase/MG5_aMC_v3_3_1/HEPTools/bin/lhapdf-config
 #export lhapdf=$prodBase/bin/lhapdf-config
 export LHAPDF_DATA_PATH=$prodBase/PDFs
+export ROOT_INCLUDE_PATH=$prodBase/delphes/external  #fixes issues related to missing libraries needed by delphes
 #if [[ -e rivetenv.sh ]]; then source rivetenv.sh; fi

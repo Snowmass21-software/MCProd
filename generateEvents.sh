@@ -39,22 +39,20 @@ for gz in $gzs; do
     gunzip $gz
 
     cd `dirname $lhe`
-    #TO DO - FIX HARDCODES
-    sed "s%N_JET_MAX%2%g" $prodBase/Cards/pythia8_card.dat > pythia8_card.dat
-    sed "s%Q_CUT%60%" --in-place pythia8_card.dat
-    $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface pythia8_card.dat
+    $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card.dat
+    #$prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card_kk.dat
     if [[ $? -ne 0 ]]; then
 	echo "Pythia  ERROR"
 	exit
     fi
-    cd $prodBase
 done
 
 #------------------------------------------------------------------------
 
-cd delphes
+#cd delphes
 for gz in $gzs; do 
-    ./DelphesLHEF $delphesCard $delphesOutput $lhe
+    #DelphesLHEF  $delphesCard $delphesOutput $lhe
+    DelphesHepMC2 $delphesCard $delphesOutput $pythiaOutput
     if [[ $? -ne 0 ]]; then
         echo "Delphes ERROR"
 	exit
@@ -62,15 +60,15 @@ for gz in $gzs; do
 done
 
 #------------------------------------------------------------------------
-source $prodBase/rivetenv.sh
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
+#source $prodBase/rivetenv.sh
+#source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
 #------------------------------------------------------------------------
 
 for gz in $gzs; do
     lhe=${gz%%.gz}
     pythiaOutput=${lhe%%.lhe}.hepmc
 
-    cd `dirname $lhe`
+    #cd `dirname $hepmc`
     rivet --analysis=MC_GENERIC $pythiaOutput
     rivet-mkhtml Rivet.yoda
     if [[ $? -ne 0 ]]; then

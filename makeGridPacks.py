@@ -145,15 +145,24 @@ if __name__=='__main__':
     f.write('reweight=ON\n')
     #f.write('madspin=ON\n')  #causes crash
     f.write('done\n')
-    #f.write(os.environ['prodBase']+'/Cards/param_card.dat\n')
     f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
-    f.write('%s/Cards/pythia8_card.dat\n'%os.environ['prodBase'])
+
+    f.write('set gridpack = .true.\n')
     if process in ['t','tB','vbf']:
         f.write('set auto_ptj_mjj False\n')
-    f.write('set gridpack = .true.\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))
+
     f.write('set xqcut %i\n'%xqcut[process])
+    #f.write('set JetMatching:qCut    = %i\n'%xqcut[process])
+    #f.write('set JetMatching:nJetMax = %i\n'%j)
+    #f.write('set Merging:nJetMax     = %i\n'%j)
+    #f.write('set JetMatching:doMerge = 1\n')
+
     f.write('done\n')
     f.write('\n')
 
+    pythiaCard=open('pythia8_card.dat','w')    
+    for line in open(os.environ['prodBase']+'/Cards/pythia8_card.dat'):
+        pythiaCard.write(line.replace('Q_CUT',str(xqcut[process])).replace('N_JET_MAX',str(j)))
+    pythiaCard.close()

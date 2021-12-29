@@ -1,3 +1,4 @@
+set auto_convert_model T
 import model heft
 
 define p = g u c d s u~ c~ d~ s~ b b~

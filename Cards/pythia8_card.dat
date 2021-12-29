@@ -38,6 +38,7 @@ PDF:pSet=LHAPDF6:NNPDF31_nnlo_as_0118
 ! Configure event input
 Beams:frameType=4
 Beams:LHEF=unweighted_events.lhe
+#Beams:LHEF=events.lhe.gz
 Beams:setProductionScalesFromLHEF=on
 LHEFInputs:nSubruns=1
 
@@ -49,10 +50,10 @@ JetMatching:coneRadius = 1.0000000000e+00
 JetMatching:doVeto = off
 JetMatching:etaJetMax = 1.0000000000e+03
 JetMatching:merge = on
-JetMatching:nJetMax = N_JET_MAX !placeholder to set this dynamically
-Merging:nJetMax     = N_JET_MAX !placeholder to set this dynamically
+!JetMatching:nJetMax = N_JET_MAX !placeholder to set this dynamically
+!Merging:nJetMax     = N_JET_MAX !placeholder to set this dynamically
 JetMatching:nQmatch = 5
-JetMatching:qCut = Q_CUT        !placeholder to set this dynamically
+!JetMatching:qCut = Q_CUT        !placeholder to set this dynamically
 JetMatching:scheme = 1
 JetMatching:setMad = off
 
@@ -70,3 +71,11 @@ SysCalc:fullCutVariation = on
 ! often irrelevant for phenomenology and very slow. You can turn this 
 ! feature off by uncommenting the line below if so desired.
 !partonlevel:mpi = off
+
+! - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+!to run MG5aMC_PY8_interface "by hand" in the gridpack
+
+!Placeholders
+JetMatching:nJetMax = N_JET_MAX
+Merging:nJetMax     = N_JET_MAX
+JetMatching:qCut    = Q_CUT

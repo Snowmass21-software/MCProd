@@ -119,6 +119,19 @@ xqcut={
     'LLB':40
 }
 
+rivetAnalyses={'B':['CMS_2017_I1610623','CMS_2019_I1753680'],
+               'vbf':['ATLAS_2020_I1803608'],
+               'BB':['ATLAS_2019_I1764342','ATLAS_2021_I1887997','CMS_2020_I1794169','CMS_2020_I1814328','ATLAS_2021_I1849535'],
+               'BBB':['ATLAS_2021_I1849535'],
+               'tB':['CMS_2018_I1686000'],
+               't':['CMS_2019_I1744604'],
+               'tt':['CMS_2018_I1663958'],
+               'ttB':['CMS_2018_I1663958'],
+               'H':['ATLAS_2020_I1790439','ATLAS_2021_I1849535'],
+               'LL':['ATLAS_2021_I1849535'],
+               'LLB':['ATLAS_2021_I1849535']
+               }
+               
 import os
 import subprocess
 f=open(sample+'.mg','w')
@@ -148,6 +161,9 @@ if __name__=='__main__':
     f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
 
     f.write('set gridpack = .true.\n')
+    f.write('set bias_module HT\n')
+    f.write('set bias_parameters = {\'ht_bias_enhancement_power\': 2.0}\n')
+    
     if process in ['t','tB','vbf']:
         f.write('set auto_ptj_mjj False\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))

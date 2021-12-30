@@ -118,19 +118,6 @@ xqcut={
     'LL':40,
     'LLB':40
 }
-
-rivetAnalyses={'B':['CMS_2017_I1610623','CMS_2019_I1753680'],
-               'vbf':['ATLAS_2020_I1803608'],
-               'BB':['ATLAS_2019_I1764342','ATLAS_2021_I1887997','CMS_2020_I1794169','CMS_2020_I1814328','ATLAS_2021_I1849535'],
-               'BBB':['ATLAS_2021_I1849535'],
-               'tB':['CMS_2018_I1686000'],
-               't':['CMS_2019_I1744604'],
-               'tt':['CMS_2018_I1663958'],
-               'ttB':['CMS_2018_I1663958'],
-               'H':['ATLAS_2020_I1790439','ATLAS_2021_I1849535'],
-               'LL':['ATLAS_2021_I1849535'],
-               'LLB':['ATLAS_2021_I1849535']
-               }
                
 import os
 import subprocess
@@ -142,7 +129,9 @@ if __name__=='__main__':
     command=processes[process]
     n=len(command[0].split('%')[0].split())
 
-    if process=='H': f.write('import model heft\n')
+    if process=='H':
+        f.write('set auto_convert_model T\n')
+        f.write('import model heft\n')
     for i in range(len(command)):
         for j in range(5-n):
             if i==0 and j==0: 

@@ -9,12 +9,7 @@ else
     test=0
 fi
 
-echo $test
 ##############################################
-
-if [[ ! -d gridpacks ]]; then mkdir gridpacks;
-else rm -rf gridpacks/*;
-fi
 
 for process in $processes; do
     for E in $energies; do
@@ -23,9 +18,7 @@ for process in $processes; do
 
 	python ${prodBase}/makeGridPacks.py $E $process $test
 
-	date
-	python ${prodBase}/MG5_aMC_v3_3_1/bin/mg5_aMC < ${prodBase}/run/${sample}.mg
-	date
+	python ${prodBase}/MG5_aMC_v3_3_1/bin/mg5_aMC < ${sample}.mg
 
 	tar -xzvf $sample/run_01_gridpack.tar.gz
 	
@@ -34,13 +27,10 @@ for process in $processes; do
 	./bin/clean4grid
 	cd ..
 	chmod a+x run.sh
-	#sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python2 ${DIR}/bin/gridrun $num_events $seed $gran%' --in-place run.sh
-	tar -czvf ${prodBase}/run/gridpacks/${sample}.tar.gz madevent run.sh
+	tar -czvf ${prodBase}/gridpacks/${sample}.tar.gz madevent run.sh
 	rm -rf madevent
 
 	if [[ $test == 1 ]]; then break; fi
     done
     if [[ $test == 1 ]]; then break; fi
 done
-
-cd ..

@@ -4,7 +4,7 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 if [[ $# < 1 ]]; 
 then 
     echo "Usage: ./generateEvents.sh <mg script> [delphes card]"
-    echo "Example: ./generateEvents.sh $PWD/test.mg $PWD/delphes/cards/gen_card.tcl"
+    echo "Example: ./generateEvents.sh $PWD/test/test.mg $PWD/delphes/cards/gen_card.tcl"
     exit
 else
     mgScript=$1
@@ -39,7 +39,7 @@ for gz in $gzs; do
     gunzip $gz
 
     cd `dirname $lhe`
-    $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card.dat
+    $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card_noPlaceholders.dat
     #$prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card_kk.dat
     if [[ $? -ne 0 ]]; then
 	echo "Pythia  ERROR"

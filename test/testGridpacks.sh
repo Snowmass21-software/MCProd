@@ -8,8 +8,8 @@ fi
 cd run
 ../makeGridPacks.sh 1
 
-cp ../gridpacks/13TeV_B.tar.gz .
-tar -xzvf 13TeV_B.tar.gz
+cp ../gridpacks/13TeV_H.tar.gz .
+tar -xzvf 13TeV_H.tar.gz
 
 #MadGraph
 sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place

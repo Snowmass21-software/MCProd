@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-processes="B BB BBB tt t tB ttB LL LLB vbf H" #vbf-B vbf-H
+processes="H B BB BBB tt t tB ttB LL LLB vbf" #vbf-B vbf-H
 energies="13 100" #TeV
 
 if [[ $# > 0 ]]; then
@@ -10,13 +10,14 @@ else
 fi
 
 ##############################################
-
 for process in $processes; do
     for E in $energies; do
 	sample=${E}TeV_${process}
+	source commonParameters.sh #set nJetMax and qCut for this sample
+	
 	if [[ -d $sample ]]; then rm -rf $sample; fi
 
-	python ${prodBase}/makeGridPacks.py $E $process $test
+	python ${prodBase}/makeGridPacks.py $E $process $nJetMax $qCut $test
 
 	python ${prodBase}/MG5_aMC_v3_3_1/bin/mg5_aMC < ${sample}.mg
 

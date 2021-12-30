@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash -xe
 
 processes="B BB BBB tt t tB ttB LL LLB vbf H" #vbf-B vbf-H
 energies="13 100" #TeV

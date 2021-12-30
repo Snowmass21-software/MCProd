@@ -2,7 +2,7 @@
 
 if [[ $# < 7 ]]; then
     echo "Usage: ./runAll.sh <gridpack> <seed> <nEvents> <pythia card> <delphes card> <outputDir> [runRivet]"
-    echo "Example: ./runAll.sh /work/jstupak/prod/MCProd/run/gridpacks/100TeV_B.tar.gz 1 100 $prodBase/Cards/pythia8_card.dat $prodBase/delphes/cards/FCC/FCChh.tcl $PWD/run 1"
+    echo "Example: ./runAll.sh /work/jstupak/prod/MCProd/gridpacks/13TeV_B.tar.gz 1 100 $prodBase/Cards/pythia8_card.dat $prodBase/delphes/cards/FCC/FCChh.tcl $PWD/run 1"
     exit
 else
     #for runGridpack.sh

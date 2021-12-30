@@ -59,6 +59,7 @@ esac
 $prodBase/runGridpack.sh $gridpack $seed $nEvents $outputDir
 
 cp $pythiaCard .
+pythiaCard=`basename $pythiaCard`
 sed s/N_JET_MAX/$nJetMax/g $pythiaCard --in-place
 sed s/Q_CUT/$qCut/g        $pythiaCard --in-place
 $prodBase/runPythiaDelphesRivet.sh $outputDir/unweighted_events.lhe.gz `basename $pythiaCard` $delphesCard $rivetAnalyses $outputDir $runRivet #take modified pythia card from working directory (no placeholders)

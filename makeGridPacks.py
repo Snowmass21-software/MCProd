@@ -2,8 +2,8 @@ from sys import argv
 E=int(argv[1])
 process=argv[2]
 sample="%iTeV_%s"%(E,process)
-nJetMax=argv[3]
-qCut=argv[4]
+nJetMax=int(argv[3])
+qCut=int(argv[4])
 if len(argv)>4: test=bool(int(argv[5]))
 
 import os
@@ -120,12 +120,13 @@ if __name__=='__main__':
     if process=='H':
         f.write('set auto_convert_model T\n')
         f.write('import model heft\n')
+
     for i in range(len(command)):
-        for j in range(nJetMax):
-            if i==0 and j==0: 
-                f.write('generate p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
-            else: 
-                f.write('add process p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
+        nJetMin=command[i].count(" j")
+        for j in range(0,nJetMax-nJetMin+1):
+            if i==0 and j==0: f.write('generate p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
+            else:          f.write('add process p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
+
             if test: break
         if test: break
 
@@ -148,7 +149,9 @@ if __name__=='__main__':
     f.write('done\n')
     f.write('\n')
 
-    pythiaCard=open('pythia8_card.dat','w')    
+    """
+    pythiaCard=open('%s/pythia8_card.dat'%sample,'w')    
     for line in open(os.environ['prodBase']+'/Cards/pythia8_card.dat'):
         pythiaCard.write(line.replace('Q_CUT',str(qCut)).replace('N_JET_MAX',str(nJetMax)))
     pythiaCard.close()
+    """

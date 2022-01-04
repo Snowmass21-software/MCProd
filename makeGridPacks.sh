@@ -1,6 +1,6 @@
-#!/bin/bash -xe
+#!/bin/bash -x
 
-processes="H B BB BBB tt t tB ttB LL LLB vbf" #vbf-B vbf-H
+processes="H vbf B BB BBB tt t tB ttB LL LLB" #vbf-B vbf-H
 energies="13 100" #TeV
 
 if [[ $# > 0 ]]; then
@@ -10,10 +10,12 @@ else
 fi
 
 ##############################################
+cd $prodBase/run
+
 for process in $processes; do
     for E in $energies; do
 	sample=${E}TeV_${process}
-	source commonParameters.sh #set nJetMax and qCut for this sample
+	source $prodBase/commonParameters.sh #set nJetMax and qCut for this sample
 	
 	if [[ -d $sample ]]; then rm -rf $sample; fi
 

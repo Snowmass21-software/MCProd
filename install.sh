@@ -2,29 +2,33 @@
 
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
-Nproc=8
+Nproc=12
 
 #source setup.sh
 #source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
 
-#LHAPDF
-wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.0.tar.gz
-tar -xzvf LHAPDF-6.4.0.tar.gz 
-cd LHAPDF-6.4.0
-./configure --prefix=$prodBase
-make  -j${Nproc}
-make install
-if [[ $? -ne 0 ]]; then
-    echo "ERROR installing rivet dependencies"
-    exit
-fi;
-cd ..
+# #LHAPDF
+# wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.0.tar.gz
+# tar -xzvf LHAPDF-6.4.0.tar.gz 
+# cd LHAPDF-6.4.0
+# ./configure --prefix=$prodBase
+# make  -j${Nproc}
+# if [[ $? -ne 0 ]]; then
+#     echo "ERROR installing LHAPDF"
+#     exit
+# fi;
+# make install
+# cd ..
 
-#git clone https://gitlab.cern.ch/hepmc/HepMC.git
-#--disable-shared
+# #git clone https://gitlab.cern.ch/hepmc/HepMC.git
+# #--disable-shared
 
-mkdir PDFs
-./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
+# mkdir PDFs
+# ./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
+# if [[ $? -ne 0 ]]; then
+#     echo "ERROR installing NNPDF31_nnlo_as_0118"
+#     exit
+# fi;
 
 #MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v3.3.1.tar.gz
@@ -61,11 +65,11 @@ tar -xzvf ghostscript-9.55.0.tar.gz
 cd ghostscript-9.55.0/
 ./configure --prefix=$prodBase
 make  -j${Nproc}
-make install
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing rivet dependencies"
     exit
 fi;
+make install
 cd ..
 
 # #Needed for Rivet
@@ -76,6 +80,6 @@ wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
 chmod +x rivet-bootstrap
 INSTALL_PREFIX=$prodBase MAKE="make -j${Nproc}" ./rivet-bootstrap
 if [[ $? -ne 0 ]]; then
-    echo "ERROR installing LHAPDF"
+    echo "ERROR installing Rivet"
     exit
 fi

@@ -13,6 +13,7 @@ else
     outputDir=$5
 fi
 
+export LHAPDF_DATA_PATH=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current/:/cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos8-gcc10-opt/share/LHAPDF/
 #########################################################################
 
 if [[ ! -d run ]]; then mkdir run; fi
@@ -26,24 +27,28 @@ if [[ "$lhe" == *".gz" ]]; then
 fi
 pythiaOutput=${lhe%%.lhe}.hepmc
 delphesOutput=${lhe%%.lhe}.root
-
+if [ 1 -eq 0 ]; then
 #------------------------------------------------------------------------
 #Pythia
+set -xe
 
+export PYTHIA8DATA=$prodBase/MG5_aMC_v3_3_1/HEPTools/pythia8/share/Pythia8/xmldoc
 $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $pythiaCard 
 
 #------------------------------------------------------------------------
 #Delphes
 
 if [[ -e $delphesOutput ]]; then rm $delphesOutput; fi
+pwd
 DelphesHepMC2 $delphesCard $delphesOutput $pythiaOutput
 
 #------------------------------------------------------------------------
 #Rivet
 
 if [[ $runRivet && ! $rivetAnalyses ]]; then exit; fi
-			      
+fi
 rivet --analysis=$rivetAnalyses $pythiaOutput
+export PATH=$PATH:/cvmfs/sft.cern.ch/lcg/external/texlive/2021/bin/x86_64-linux/:$prodBase/bin
 rivet-mkhtml Rivet.yoda
 
 #for dir in ${rivetAnalyses//,/ }; do

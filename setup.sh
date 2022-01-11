@@ -8,10 +8,6 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     module purge
     module use /software/modulefiles
  
-    #module load python/2.7.15
-    #module load py-numpy/1.15.2-py2.7
-    #module load py-six/1.11.0-py2.7
-    
     module load python/3.7.0
     module load gcc-8.2.0
     module load cmake
@@ -19,9 +15,6 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     module load py-numpy/1.15.2-py3.7
     module load py-six/1.11.0-py3.7
     
-    source /cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc8-opt/setup.sh
-    
-    #convenient
     module load emacs
 else
     which root >> /dev/null
@@ -31,6 +24,9 @@ else
     fi
 fi
 
+source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc8-opt/ROOT-env.sh
+source /cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc8-opt/setup.sh
+
 export PYTHIA8DATA=$prodBase/MG5_aMC_v3_3_1/HEPTools/pythia8/share/Pythia8/xmldoc
 export PATH=$PATH:/cvmfs/sft.cern.ch/lcg/external/texlive/2021/bin/x86_64-linux/:${prodBase}/bin
-export LHAPDF_DATA_PATH=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current/:/cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos8-gcc10-opt/share/LHAPDF/
+export LHAPDF_DATA_PATH=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current/:/cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos8-gcc8-opt/share/LHAPDF/

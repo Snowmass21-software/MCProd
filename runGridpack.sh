@@ -14,7 +14,6 @@ fi
 if [[ ! -d run ]]; then mkdir run; fi
 cd run
 
-export LHAPDF_DATA_PATH=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current/:/cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos8-gcc10-opt/share/LHAPDF/
 cp $gridpack .
 tar -xzvf $gridpack
 

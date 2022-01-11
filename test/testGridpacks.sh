@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash -xe
 
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
@@ -12,7 +12,7 @@ cp ../gridpacks/13TeV_H.tar.gz .
 tar -xzvf 13TeV_H.tar.gz
 
 #MadGraph
-sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place
+#sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place
 ./run.sh 10 8
 gunzip events.lhe.gz
 mv events.lhe unweighted_events.lhe
@@ -22,7 +22,7 @@ $prodBase/MG5_aMC_v3_3_1/HEPTools/MG5aMC_PY8_interface/MG5aMC_PY8_interface $pro
 
 #Delphes
 if [[ -e unweighted_events.root ]]; then rm unweighted_events.root; fi
-$prodBase/delphes/DelphesHepMC2 $prodBase/delphes/cards/gen_card.tcl unweighted_events.root $prodBase/run/unweighted_events.hepmc
+DelphesHepMC2 $prodBase/delphes/cards/gen_card.tcl unweighted_events.root $prodBase/run/unweighted_events.hepmc
 
 #Rivet
 rivet --analysis=MC_GENERIC $prodBase/run/unweighted_events.hepmc

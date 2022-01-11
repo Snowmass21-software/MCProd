@@ -2,6 +2,8 @@
 
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
+if [[ ! -d gridpacks ]]; then mkdir gridpacks; fi
+
 if [[ ! -d run ]]; then mkdir run;
 #else rm -rf run/*;
 fi

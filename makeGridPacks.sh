@@ -10,6 +10,8 @@ else
 fi
 
 ##############################################
+rm $prodBase/gridpacks/*
+
 cd $prodBase/run
 
 for process in $processes; do
@@ -29,6 +31,7 @@ for process in $processes; do
 	./bin/compile
 	./bin/clean4grid
 	cd ..
+	
 	chmod a+x run.sh
 	tar -czvf ${prodBase}/gridpacks/${sample}.tar.gz madevent run.sh
 	rm -rf madevent

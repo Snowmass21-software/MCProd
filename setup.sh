@@ -24,7 +24,7 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
 #     fi
 fi
 
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc8-opt/ROOT-env.sh
+#source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc8-opt/ROOT-env.sh
 source /cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc8-opt/setup.sh
 
 export PYTHIA8DATA=$prodBase/MG5_aMC_v3_3_1/HEPTools/pythia8/share/Pythia8/xmldoc

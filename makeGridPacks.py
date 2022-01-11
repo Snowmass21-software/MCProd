@@ -112,7 +112,7 @@ import subprocess
 f=open(sample+'.mg','w')
 if __name__=='__main__':
     f.write(definitions+'\n')
-    f.write('set lhapdf_py3 /cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos7-gcc8-opt/bin/lhapdf-config\n')
+    f.write('set lhapdf_py3 /cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc8-opt/bin/lhapdf-config\n')
     
     command=processes[process]
     #n=len(command[0].split('%')[0].split())

@@ -31,7 +31,6 @@ if [ 1 -eq 0 ]; then
 #Pythia
 set -xe
 
-export PYTHIA8DATA=$prodBase/MG5_aMC_v3_3_1/HEPTools/pythia8/share/Pythia8/xmldoc
 $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface $pythiaCard 
 
 #------------------------------------------------------------------------

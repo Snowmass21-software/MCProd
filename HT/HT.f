@@ -83,7 +83,7 @@ C --------------------
              ht=ht+pt(i)
           enddo
 
-          bias_weight = ht**ht_bias_enhancement_power
+          bias_weight = max(100.0d0,ht)**ht_bias_enhancement_power
 
           return
 

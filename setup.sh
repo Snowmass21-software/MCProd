@@ -16,12 +16,12 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     module load py-six/1.11.0-py3.7
     
     module load emacs
-else
-    which root >> /dev/null
-    if [[ $? -ne 0 ]]; then
-	echo "Please ensure ROOT is available and retry"
-	exit
-    fi
+# else
+#     which root >> /dev/null
+#     if [[ $? -ne 0 ]]; then
+# 	echo "Please ensure ROOT is available and retry"
+# 	exit
+#     fi
 fi
 
 source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc8-opt/ROOT-env.sh

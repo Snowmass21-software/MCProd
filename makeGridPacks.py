@@ -132,7 +132,7 @@ if __name__=='__main__':
 
     f.write('output %sTeV_%s\n'%(E,process))
     f.write('launch %sTeV_%s\n'%(E,process))
-    #f.write('reweight=ON\n')
+    f.write('reweight=ON\n')
     f.write('done\n')
     if not test:
         f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
@@ -140,8 +140,8 @@ if __name__=='__main__':
 
     f.write('set gridpack = .true.\n')
     #f.write('set bias_module ptj_bias\n')
-    #f.write('set bias_module HT\n')
-    #f.write('set bias_parameters = {\'ht_bias_enhancement_power\': 2.0}\n')
+    f.write('set bias_module HT\n')
+    f.write('set bias_parameters = {\'ht_bias_enhancement_power\': 2.0}\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))
     

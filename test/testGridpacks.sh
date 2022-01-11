@@ -2,6 +2,8 @@
 
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
+if [[ ! -d gridpacks ]]; then mkdir gridpacks; fi
+
 if [[ ! -d run ]]; then mkdir run;
 #else rm -rf run/*;
 fi
@@ -12,7 +14,7 @@ cp ../gridpacks/13TeV_H.tar.gz .
 tar -xzvf 13TeV_H.tar.gz
 
 #MadGraph
-sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place
+#sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place
 ./run.sh 10 8
 gunzip events.lhe.gz
 mv events.lhe unweighted_events.lhe

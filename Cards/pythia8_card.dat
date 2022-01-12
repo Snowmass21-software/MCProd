@@ -38,7 +38,6 @@ PDF:pSet=LHAPDF6:NNPDF31_nnlo_as_0118
 ! Configure event input
 Beams:frameType=4
 Beams:LHEF=unweighted_events.lhe
-#Beams:LHEF=events.lhe.gz
 Beams:setProductionScalesFromLHEF=on
 LHEFInputs:nSubruns=1
 

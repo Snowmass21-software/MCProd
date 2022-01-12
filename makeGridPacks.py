@@ -4,7 +4,8 @@ process=argv[2]
 sample="%iTeV_%s"%(E,process)
 nJetMax=int(argv[3])
 qCut=int(argv[4])
-if len(argv)>4: test=bool(int(argv[5]))
+if len(argv)>5: test=bool(int(argv[5]))
+    
 
 import os
 
@@ -126,7 +127,6 @@ if __name__=='__main__':
         for j in range(0,nJetMax-nJetMin+1):
             if i==0 and j==0: f.write('generate p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
             else:          f.write('add process p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
-
             if test: break
         if test: break
 

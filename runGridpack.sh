@@ -18,4 +18,6 @@ cp $gridpack .
 tar -xzvf $gridpack
 
 ./run.sh $nEvents $seed
-mv events.lhe.gz $outputDir/unweighted_events.lhe.gz
+gunzip events.lhe.gz
+madevent/bin/madevent reweight events.lhe
+mv events.lhe $outputDir/unweighted_events.lhe

@@ -19,7 +19,7 @@ for process in $processes; do
 	
 	if [[ -d $sample ]]; then rm -rf $sample; fi
 
-	python ${prodBase}/makeGridPacks.py $E $process $nJetMax $qCut $test
+	python ${prodBase}/makeGridPacks.py $E $process $nJetMax $xqCut $test
 
 	python ${prodBase}/MG5_aMC_v3_3_1/bin/mg5_aMC < ${sample}.mg
 

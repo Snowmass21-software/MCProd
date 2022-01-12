@@ -42,8 +42,9 @@ DelphesHepMC2 $delphesCard $delphesOutput $pythiaOutput
 #Rivet
 
 if [[ $runRivet && ! $rivetAnalyses ]]; then exit; fi
-			      
+
 rivet --analysis=$rivetAnalyses $pythiaOutput
+export PATH=$PATH:/cvmfs/sft.cern.ch/lcg/external/texlive/2021/bin/x86_64-linux/:$prodBase/bin
 rivet-mkhtml Rivet.yoda
 
 #for dir in ${rivetAnalyses//,/ }; do

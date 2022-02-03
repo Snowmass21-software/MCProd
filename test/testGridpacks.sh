@@ -19,6 +19,7 @@ tar -xzvf 13TeV_H.tar.gz
 #sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place
 ./run.sh 10 8
 gunzip events.lhe.gz
+madevent/bin/madevent reweight events.lhe
 mv events.lhe unweighted_events.lhe
 
 #Pythia

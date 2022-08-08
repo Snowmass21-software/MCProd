@@ -5,7 +5,6 @@ sample="%iTeV_%s"%(E,process)
 nJetMax=int(argv[3])
 qCut=int(argv[4])
 if len(argv)>5: test=bool(int(argv[5]))
-    
 
 import os
 
@@ -17,7 +16,7 @@ define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 
 define lept = l+ l- vl vl~
-define bos = Z W+ W- a
+define bos = Z W+ W-
 define top = t t~
 """
 
@@ -72,7 +71,7 @@ processes={
 #2013 style
 processes={
 "B":
-["bos j %s"%common],
+["bos %s"%common],
 
 "vbf":
 ["bos j j %s QCD=nQCD"%common,

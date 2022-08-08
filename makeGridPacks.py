@@ -139,15 +139,15 @@ if __name__=='__main__':
         f.write('set xqcut %i\n'%qCut)
 
     f.write('set gridpack = .true.\n')
-    #f.write('set bias_module ptj_bias\n')
-    f.write('set bias_module HT\n')
-    f.write('set bias_parameters = {\'ht_bias_enhancement_power\': 2.0}\n')
+    if process not in ['vbf']:
+        f.write('set bias_module HT\n')
+        f.write('set bias_parameters = {\'ht_bias_enhancement_power\': 2.0}\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))
     
     if process in ['t','tB','vbf']:
         f.write('set auto_ptj_mjj False\n')
-
+        
     f.write('done\n')
     f.write('\n')
 

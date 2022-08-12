@@ -8,7 +8,7 @@ if len(argv)>5: test=bool(int(argv[5]))
 
 import os
 
-definitions="""define p = g u c d s u~ c~ d~ s~ b b~
+definitions="""define p = g u c d s u~ c~ d~ s~
 define j = g u c d s u~ c~ d~ s~ b b~
 define l+ = e+ mu+ ta+
 define l- = e- mu- ta-
@@ -16,7 +16,8 @@ define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 
 define lept = l+ l- vl vl~
-define bos = Z W+ W-
+define W = W+ W-
+define bos = Z W
 define top = t t~
 """
 
@@ -73,6 +74,12 @@ processes={
 "B":
 ["bos %s"%common],
 
+"W":
+["W %s"%common],
+
+"Z":
+["Z %s"%common],    
+    
 "vbf":
 ["bos j j %s QCD=nQCD"%common,
 "h j j %s QCD=nQCD"%common],
@@ -126,21 +133,24 @@ if __name__=='__main__':
         for j in range(0,nJetMax-nJetMin+1):
             if i==0 and j==0: f.write('generate p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
             else:          f.write('add process p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
-            if test: break
+            if j==1 and test: break
         if test: break
 
     f.write('output %sTeV_%s\n'%(E,process))
     f.write('launch %sTeV_%s\n'%(E,process))
     f.write('reweight=ON\n')
     f.write('done\n')
-    if not test:
-        f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
-        f.write('set xqcut %i\n'%qCut)
+    #if not test:
+    f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
+    f.write('set xqcut %i\n'%qCut)
 
     f.write('set gridpack = .true.\n')
+    #f.write('set nevents = 1000\n')
     if process not in ['vbf']:
         f.write('set bias_module HT\n')
-        f.write('set bias_parameters = {\'ht_bias_enhancement_power\': 2.0}\n')
+    if E==13:f.write('set bias_parameters = {\'ht_bias_min\':10.0}\n')
+    else:    f.write('set bias_parameters = {\'ht_bias_min\':100.0}\n')
+
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))
     

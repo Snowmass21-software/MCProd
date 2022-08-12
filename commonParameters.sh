@@ -10,6 +10,12 @@ case $sample in
     *TeV_B)   rivetAnalyses='CMS_2017_I1610623,CMS_2019_I1753680,MC_FSPARTICLES,MC_WEIGHTS,MC_KTSPLITTINGS';
              nJetMax=3;
              xqCut=40;;
+    *TeV_W)   rivetAnalyses='CMS_2017_I1610623,MC_FSPARTICLES,MC_WEIGHTS,MC_KTSPLITTINGS';
+             nJetMax=3;
+             xqCut=40;;
+    *TeV_Z)   rivetAnalyses='CMS_2019_I1753680,MC_FSPARTICLES,MC_WEIGHTS,MC_KTSPLITTINGS';
+             nJetMax=3;
+             xqCut=40;;
     *TeV_ttB) rivetAnalyses='ATLAS_2018_I1707015,MC_FSPARTICLES,MC_WEIGHTS,MC_KTSPLITTINGS';
              nJetMax=1;
              xqCut=80;;

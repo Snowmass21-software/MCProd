@@ -110,7 +110,9 @@
 #*********************************************************************
 # Minimum and maximum pt's (for max, -1 means no cut)                *
 #*********************************************************************
- {} = pt_min_pdg ! pt cut for other particles (use pdg code). Applied on particle and anti-particle
+ 20.0  = ptj       ! minimum pt for the jets
+ -1.0  = ptjmax    ! maximum pt for the jets
+{} = pt_min_pdg ! pt cut for other particles (use pdg code). Applied on particle and anti-particle
  {}	= pt_max_pdg ! pt cut for other particles (syntax e.g. {6: 100, 25: 50}) 
 #
 # For display option for energy cut in the partonic center of mass frame type 'update ecut'
@@ -118,7 +120,8 @@
 #*********************************************************************
 # Maximum and minimum absolute rapidity (for max, -1 means no cut)   *
 #*********************************************************************
- {} = eta_min_pdg ! rap cut for other particles (use pdg code). Applied on particle and anti-particle
+ 5.0 = etaj    ! max rap for the jets
+{} = eta_min_pdg ! rap cut for other particles (use pdg code). Applied on particle and anti-particle
  {} = eta_max_pdg ! rap cut for other particles (syntax e.g. {6: 2.5, 23: 5})
 #*********************************************************************
 # Minimum and maximum DeltaR distance                                *

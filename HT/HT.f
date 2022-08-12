@@ -4,7 +4,7 @@ C populates the large pt tale of the leading jet.
 C
 C The two options of this subroutine, that can be set in
 C the run card are:
-C    > (double precision) ht_bias_target_ht : target ht value
+C    > (double precision) ht_bias_min : target ht value
 C    > (double precision) ht_bias_enhancement_power : exponent
 C
 C Schematically, the functional form of the enhancement is
@@ -14,7 +14,7 @@ C
 C The following lines are read by MG5aMC to set what are the 
 C relevant parameters for this bias module.
 C
-C  parameters = {'ht_bias_target_ht': 1000.0,
+C  parameters = {'ht_bias_min': 1000.0,
 C               'ht_bias_enhancement_power': 2.0}
 C
 
@@ -40,7 +40,7 @@ C
 c
 c local variables defined in the run_card
 c
-          double precision ht_bias_target_ht
+          double precision ht_bias_min
           double precision ht_bias_enhancement_power
 C
 C Global variables
@@ -83,7 +83,7 @@ C --------------------
              ht=ht+pt(i)
           enddo
 
-          bias_weight = max(100.0d0,ht)**ht_bias_enhancement_power
+          bias_weight = max(ht_bias_min,ht)**2
 
           return
 

@@ -28,5 +28,5 @@ fi
 source /cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc8-opt/setup.sh
 
 export PYTHIA8DATA=$prodBase/MG5_aMC_v3_3_1/HEPTools/pythia8/share/Pythia8/xmldoc
-export PATH=$PATH:/cvmfs/sft.cern.ch/lcg/external/texlive/2021/bin/x86_64-linux/:${prodBase}/bin
+export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2020/bin/x86_64-linux/:$PATH:${prodBase}/bin
 export LHAPDF_DATA_PATH=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current/:/cvmfs/sft.cern.ch/lcg/views/LCG_101/x86_64-centos7-gcc8-opt/share/LHAPDF/

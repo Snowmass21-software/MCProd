@@ -144,8 +144,9 @@ if __name__=='__main__':
     f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
     f.write('set xqcut %i\n'%qCut)
 
+    f.write('set nevents = 500\n')
     f.write('set gridpack = .true.\n')
-    #f.write('set nevents = 1000\n')
+    f.write('set run_mode = 2\n')  #this doesn't work
     if process not in ['vbf']:
         f.write('set bias_module HT\n')
     if E==13:f.write('set bias_parameters = {\'ht_bias_min\':10.0}\n')

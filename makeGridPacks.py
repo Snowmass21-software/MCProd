@@ -146,10 +146,10 @@ if __name__=='__main__':
 
     f.write('set gridpack = .true.\n')
     #f.write('set nevents = 1000\n')
-    if process not in ['vbf']:
-        f.write('set bias_module HT\n')
-    if E==13:f.write('set bias_parameters = {\'ht_bias_min\':10.0}\n')
-    else:    f.write('set bias_parameters = {\'ht_bias_min\':100.0}\n')
+    #if process not in ['vbf']:
+    #    f.write('set bias_module HT\n')
+    #if E==13:f.write('set bias_parameters = {\'ht_bias_min\':10.0}\n')
+    #else:    f.write('set bias_parameters = {\'ht_bias_min\':100.0}\n')
 
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))

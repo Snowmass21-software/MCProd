@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 #processes="H vbf B BB BBB tt t tB ttB LL LLB" #vbf-B vbf-H
-processes="W Z B tt"
+processes="W Z tt"
 energies="13 100" #TeV
 
 if [[ $# > 0 ]]; then
